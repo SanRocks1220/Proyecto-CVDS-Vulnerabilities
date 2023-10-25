@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" href="equiposEstilo.css">
+        </link>
+    </h:head>
+    <h:body>
+        <body>
+            <header id="main-header">
+                <div class="logo-image">
+                    <a href="../index.xhtml">
+                        <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                            width:170px;
+                            height:71px;" 
+                            />
+                    </a>
+                </div>
+                <a id="logo-header" href="adminEquipo.xhtml">
+                    <span class="site-name">Volver
+                    </span>
+                </a>
+            </header>
+            <br> </br>
+
+            <div class="a">
+                <h1>Consultar Equipos</h1>
+            </div>
+            <div>
+                <h1>Equipos</h1>
+                <p:dataTable var="equipo" value="#{equipoBean.getEquipos()}"
+                filteredValue="#{equipoBean.getEquipos()}"
+                lazy="true" 
+                paginator="true" 
+                rows="5"
+                paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+                rowsPerPageTemplate="5,10,15"
+                rowKey="#{equipo.id}"
+                id="Equipo">
+                    <p:column headerText="Identificador" sortBy="#{equipo.id}" filterBy="#{equipo.id}" filterMatchMode="contains">
+                        <h:outputText value="#{equipo.id}" style="vertical-align: middle; margin-left: .5rem"/>
+                    </p:column>
+                    <p:column headerText="Nombre" sortBy="#{equipo.nombre}" filterBy="#{equipo.nombre}" filterMatchMode="contains">
+                        <h:outputText value="#{equipo.nombre}" style="vertical-align: middle; margin-left: .5rem"/>
+                    </p:column>
+                    <p:column headerText="Descripción" sortBy="#{equipo.descripcion}" filterBy="#{equipo.descripcion}" filterMatchMode="contains">
+                        <h:outputText value="#{equipo.descripcion}" style="vertical-align: middle; margin-left: .5rem"/>
+                    </p:column>
+                    <p:column headerText="Disponible" sortBy="#{equipo.disponible}" filterBy="#{equipo.disponible}">
+                        <h:outputText value="#{equipo.disponible}" style="vertical-align: middle; margin-left: .5rem"/>
+                    </p:column>
+                    
+                    <p:column headerText="Registrar Novedades" >
+                        <p:button outcome="registrarNovedadEquipo?equipo=#{equipo.id}" value="Registrar Novedad"
+                        styleClass="rounded-button ui-button-help"/>
+                    </p:column>
+                    <p:column headerText="Consultar Novedades" >
+                        <p:button outcome="ListaNovedadesEq?equipo=#{equipo.id}" value="Ver novedades"
+                        styleClass="rounded-button ui-button-help"/>
+                    </p:column>
+                    <p:column headerText="Asociar a Laboratorio" >
+                        <p:button outcome="AsociarEquipo?equipo=#{equipo.id}" value="Asociar" 
+                        styleClass="rounded-button ui-button-help"/>
+                    </p:column>
+                </p:dataTable>
+                <h:form>
+                    <p:panel header="Exportar Equipos">
+                        <h:commandLink>
+                            <p:graphicImage value="../IMG/excel.png"/>
+                            <p:dataExporter type="xls"
+                                target="Equipos" fileName="Equipos" />
+                        </h:commandLink>
+                    </p:panel>
+                </h:form>
+                <br> </br>
+            </div>
+        </body>
+    </h:body>
+</html>

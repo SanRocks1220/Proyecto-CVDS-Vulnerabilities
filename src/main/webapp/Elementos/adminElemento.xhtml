@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" href="elementosEstilo.css">
+        </link>
+    </h:head>
+    <h:body>
+        <body>
+            <header id="main-header">
+                <div class="logo-image">
+                    <a href="../index.xhtml">
+                        <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                            width:170px;
+                            height:71px;"/>
+                    </a>
+                </div>
+                <a id="logo-header" href="../index.xhtml">
+                    <span class="site-name">Volver
+                    </span>
+                </a>
+            </header>
+            <br> </br>
+
+            <div class="a">
+                <h1>Administrador</h1>
+                <p>Como usuario administrador del historial de equipos podra: </p>
+                <p>registrar, eliminar y reportar novedades de los elementos</p>
+                <br> </br>
+            </div>
+            <div>
+                <!--Registrando elementos-->
+                <a href="registrarElementos.xhtml" style="color:rgb(255, 255, 255)">
+                    <button>Registrar Elementos</button>
+                </a>
+                <br> </br>
+                <a href="consultarElementos.xhtml" style="color:rgb(255, 255, 255)">
+                    <button>Consultar Elementos</button>
+                </a>
+                <br> </br>
+                <a href="DarDeBajaElemento.xhtml" style="color:rgb(255, 255, 255)">
+                    <button>Dar de baja</button>
+                </a>
+            </div>
+
+        </body>
+    </h:body>
+</html>

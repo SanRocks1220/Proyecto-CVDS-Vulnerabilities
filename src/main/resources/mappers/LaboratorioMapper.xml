@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper para la entidad Equipo y lo que se puede hacer con ella -->
+<!-- Autor: Gabriela Castro - Team Developer -->
+
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.LaboratorioMapper">
+
+    <insert id="registrarLaboratorio" parameterType="map">
+        INSERT INTO laboratorios(id,nombre,descripcion, de_baja, fecha_creacion, fecha_Cierre, eqps)
+        VALUES(2,#{lab.nombre},#{lab.descripcion}, 0, #{lab.fechaCreacion}, null, null);
+    </insert>
+
+    <select id="consultarLaboratorio" parameterType="map" resultMap="LaboratorioResult">
+        SELECT
+        idLaboratorio   as lab_id,
+        nombre          as lab_nombre,
+        fechaCreacion   as lab_fechaCreacion,
+        fechaCierre     as lab_fechaCierre,
+        descripcion     as lab_descripcion
+        eqps            as lab_eqps    
+        <!--ele.ELE_EQU_FK      as ele_eqps-->
+
+        FROM laboratoios
+        WHERE idLaboratorio=#{id};
+    </select>
+
+    <update id="asociarLaboratorio" parameterType="map" >
+        UPDATE labortorios(eqps)
+            SET eqps = idEqui
+        WHERE id = #{idLab}
+    </update>
+
+
+    <select id="consultarLaboratorios" resultMap="LaboratorioResult">
+        SELECT
+        lab.id              as lab_id,
+        lab.nombre          as lab_nombre,
+        lab.de_baja         as lab_de_baja,
+        lab.fecha_Creacion  as lab_fechaCreacion,
+        lab.fecha_Cierre    as lab_fechaCierre,
+        lab.descripcion     as lab_descripcion
+
+        FROM laboratorios AS lab;
+    </select>
+
+    <resultMap  id='LaboratorioResult' type='Laboratorio'>
+        <id property="id" column="lab_id" />
+        <result property="nombre" column="lab_nombre" />
+        <result property="descripcion" column="lab_descripcion"/>
+        <result property="de_baja" column="lab_de_baja"/>
+        <result property="fechaCreacion" column="lab_fechaCreacion"/>
+        <result property="fechaCierre" column="lab_fechaCierre"/>
+    </resultMap>
+
+</mapper>

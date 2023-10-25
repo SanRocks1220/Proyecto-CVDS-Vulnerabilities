@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" href="../Elementos/elementosEstilo.css">
+        </link>
+    </h:head>
+    <h:body>
+        <body>
+            <header id="main-header">
+                <div class="logo-image">
+                    <a href="../index.xhtml">
+                        <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                            width:170px;
+                            height:71px;" 
+                            />
+                    </a>
+                </div>
+                <a id="logo-header" href="../index.xhtml">
+                    <span class="site-name">Volver
+                    </span>
+                </a>
+            </header>
+
+    <br> </br>
+                
+                <div class="a">
+                    <br> </br>
+                    <h2>Reporte Historico de Novedades</h2>
+                    <br/>
+                    <p:dataTable var="novedad" value="#{novedadElBean.consultarTodasNovedades()}" 
+                        filteredValue="#{novedadElBean.consultarTodasNovedades()}"
+                        lazy="true" 
+                        paginator="true" 
+                        rows="5"
+                        paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+                        rowsPerPageTemplate="5,10,15"
+                        rowKey="#{novedad.id}"
+                        id="Novedades"
+                        sortOrder="descending">
+                            <p:column headerText="Identificador" sortBy="#{novedad.id}" filterBy="#{novedad.id}" >
+                                <h:outputText value="#{novedad.id}" style="vertical-align: middle; margin-left: .5rem"/>
+                            </p:column>
+                            <p:column headerText="ID Elemento" >
+                                <h:outputText value="#{novedad.idElemento}" />
+                            </p:column>
+                            <p:column headerText="ID Equipo">
+                                <h:outputText value="#{novedad.idEquipo}"/>
+                            </p:column>
+                            <p:column headerText="Fecha" sortBy="#{novedad.fecha}" filterBy="#{novedad.fecha}" filterMatchMode="contains">
+                                <h:outputText value="#{novedad.fecha}" style="vertical-align: middle; margin-left: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Título" sortBy="#{novedad.titulo}" filterBy="#{novedad.titulo}" filterMatchMode="contains">
+                                <h:outputText value="#{novedad.titulo}" style="vertical-align: middle; margin-left: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Carnet" sortBy="#{novedad.carnet}" filterBy="#{novedad.carnet}" filterMatchMode="contains">
+                                <h:outputText value="#{novedad.carnet}" style="vertical-align: middle; margin-left: .5rem"/>
+                            </p:column>
+                            <p:column headerText="Detalle" sortBy="#{novedad.detalle}" filterBy="#{novedad.detalle}" filterMatchMode="contains">
+                                <h:outputText value="#{novedad.detalle}" style="vertical-align: middle; margin-left: .5rem"/>
+                            </p:column>
+                    </p:dataTable>
+                    <h:form>
+                    <p:panel header="Exportar Historial Novedades">
+                        <h:commandLink>
+                            <p:graphicImage value="../IMG/xls.png"/>
+                            <p:dataExporter type="xls" target="novsTable" fileName="reporte_novedades"/>
+                        </h:commandLink>
+                    </p:panel>
+                    </h:form>
+                </div>
+            <br> </br>
+        </body>
+    </h:body>
+</html>
+
+
+

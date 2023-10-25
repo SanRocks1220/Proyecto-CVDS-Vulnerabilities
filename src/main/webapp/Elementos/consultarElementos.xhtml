@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" href="elementosEstilo.css">
+        </link>
+    </h:head>
+    <h:body>
+        <body>
+            <header id="main-header">
+                <div class="logo-image">
+                    <a href="../index.xhtml">
+                        <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                            width:170px;
+                            height:71px;" 
+                            />
+                    </a>
+                </div>
+                <a id="logo-header" href="adminElemento.xhtml">
+                    <span class="site-name">Volver
+                    </span>
+                </a>
+            </header>
+            <br> </br>
+
+            <div class="a">
+                <h1>Consultar Elementos</h1>
+            </div>
+            <div>
+                <h1>Elementos</h1>
+                <p:dataTable var="elemento" value="#{elementoBean.getElementos()}" widgetVar="customersTable"
+                filteredValue="#{elementoBean.getElementos()}"
+                lazy="true" 
+                paginator="true" 
+                rows="5"
+                paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+                rowsPerPageTemplate="5,10,15"
+                rowKey="#{elemento.id}"
+                id="Elementos">
+                    <p:column headerText="Identificador" sortBy="#{elemento.id}" filterBy="#{elemento.id}" filterMatchMode="contains" >
+                        <h:outputText value="#{elemento.id}" style="vertical-align: middle; margin-left: .5rem"/>
+                    </p:column>
+                    <p:column headerText="Nombre" sortBy="#{elemento.nombre}" filterBy="#{elemento.nombre}" filterMatchMode="contains">
+                        <h:outputText value="#{elemento.nombre}" style="vertical-align: middle; margin-left: .5rem"/>
+                    </p:column>
+                    <p:column headerText="Descripción" sortBy="#{elemento.descripcion}" filterBy="#{elemento.descripcion}" filterMatchMode="contains">
+                        <h:outputText value="#{elemento.descripcion}" style="vertical-align: middle; margin-left: .5rem"/>
+                    </p:column>
+                    <p:column headerText="Disponible" sortBy="#{elemento.disponible}" filterBy="#{elemento.disponible}">
+                        <h:outputText value="#{elemento.disponible}" style="vertical-align: middle; margin-left: .5rem"/>
+                    </p:column>
+                    
+                    <p:column headerText="Registrar Novedades" >
+                        <p:button outcome="RegistroNovedades?elementoId=#{elemento.id}" value="Registrar Novedad"
+                        styleClass="rounded-button ui-button-help"/>
+                    </p:column>
+                    <p:column headerText="Consultar Novedades" >
+                        <p:button outcome="ListaNovedades?elementoId=#{elemento.id}" value="Ver Novedades"
+                        styleClass="rounded-button ui-button-help"/>
+                    </p:column>
+                    <p:column headerText="Asociar a Equipo" >
+                        <p:button outcome="AsociarElemento?elemento=#{elemento.id}" value="Asociar" 
+                        styleClass="rounded-button ui-button-help"/>
+                    </p:column>
+                </p:dataTable>
+                <h:form>
+                    <p:panel header="Exportar Elementos">
+                        <h:commandLink>
+                            <p:graphicImage value="../IMG/xls.png"/>
+                            <p:dataExporter type="xls" target="Elementos" fileName="Elementos" />
+                        </h:commandLink>
+                    </p:panel>
+                </h:form>
+                <br> </br>
+            </div>
+        </body>
+    </h:body>
+</html>

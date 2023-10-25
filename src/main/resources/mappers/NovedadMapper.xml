@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper para la entidad Novedad y lo que se puede hacer con ella -->
+<!-- Autor: Santiago Rocha - SCRUM Master / Team Developer -->
+
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.NovedadMapper">
+
+    <select id="consultarNovedades" resultMap="NovedadResult">
+        SELECT
+                n.id as n_id,
+                n.fecha as n_fecha,
+                n.titulo as n_titulo,
+                n.carnet as n_carnet,
+                n.detalle as n_detalle,
+                n.idEquipo as n_idEquipo,
+                n.idElemento as n_idElemento
+
+                FROM novedades AS n;
+    </select>
+
+    <insert id="registrarNovedad" parameterType="map" >
+        INSERT INTO novedades (id, fecha, titulo, carnet, detalle, idEquipo, idElemento)
+         VALUES(#{novedad.id},#{novedad.fecha},#{novedad.titulo},#{novedad.carnet},#{novedad.detalle}, NULL, NULL);
+    </insert>
+
+    <!-- Consultas e Inserciones de novedades relacionadas con Equipos-->
+    <select id="consultarNovedadesEquipo" parameterType="map" resultMap="NovedadResult">
+        SELECT
+                n.id as n_id,
+                n.fecha as n_fecha,
+                n.titulo as n_titulo,
+                n.carnet as n_carnet,
+                n.detalle as n_detalle,
+                n.idEquipo as n_idEquipo,
+                n.idElemento as n_idElemento
+
+
+                FROM novedades AS n
+                WHERE n.idEquipo=#{equipo.id};
+    </select>
+
+    <insert id="registrarNovedadEquipo" parameterType="map" >
+        INSERT INTO novedades (id, fecha, titulo, carnet, detalle, idEquipo, idElemento)
+         VALUES(1,#{novedad.fecha},#{novedad.titulo},#{novedad.carnet},#{novedad.detalle}, #{novedad.idEquipo}, NULL);
+    </insert>
+
+
+    <!-- Consultas e Inserciones de novedades relacionadas con Elementos-->
+    <select id="consultarNovedadesElemento" parameterType="map" resultMap="NovedadResult">
+        SELECT
+                
+                n.id as n_id,
+                n.fecha as n_fecha,
+                n.titulo as n_titulo,
+                n.carnet as n_carnet,
+                n.detalle as n_detalle,
+                n.idEquipo as n_idEquipo,
+                n.idElemento as n_idElemento
+
+
+                FROM novedades AS n
+                WHERE n.idElemento=#{elemento.id};
+    </select>
+
+    <insert id="registrarNovedadElemento" parameterType="map" >
+    INSERT INTO novedades (id, fecha, titulo, carnet, detalle, idEquipo, idElemento)
+         VALUES(1,#{novedad.fecha},#{novedad.titulo},#{novedad.carnet},#{novedad.detalle}, #{novedad.idElemento}, #{novedad.idElemento});
+    </insert>
+    
+
+    <resultMap id="NovedadResult" type="Novedad" >
+        <id property="id" column="n_id"/>
+        <result property="fecha" column="n_fecha" />
+        <result property="titulo" column="n_titulo" />
+        <result property="carnet" column="n_carnet" />
+        <result property="detalle" column="n_detalle" />
+        <result property="idEquipo" column="n_idEquipo" />
+        <result property="idElemento" column="n_idElemento" />
+    </resultMap>
+</mapper>

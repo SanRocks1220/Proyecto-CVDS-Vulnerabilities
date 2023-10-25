@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" href="elementosEstilo.css">
+        </link>
+    </h:head>
+    <h:body>
+        <body>
+            <header id="main-header">
+                <div class="logo-image">
+                    <a href="../index.xhtml">
+                        <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                            width:170px;
+                            height:71px;" 
+                            />
+                    </a>
+                </div>
+                <a id="logo-header" href="adminElemento.xhtml">
+                    <span class="site-name">Volver
+                    </span>
+                </a>
+            </header>
+            <br> </br>
+
+            <div class="a">
+                <br> </br>
+                <h1>Registrar un nuevo Elemento</h1>
+                <br> </br>
+            </div>
+
+            <div  id="coments" class="a">
+                <h2>
+                        Registra tu elemento a continuación:
+                </h2>
+                <h:form action = "">
+                    <label>Tipo de Elemento: </label>
+                    <p:selectOneMenu value="#{elementoBean.tipoElemento}" style="width:196px">
+                        <f:selectItems value="#{elementoBean.tipos()}"/>
+                    </p:selectOneMenu>
+                    <br> </br>
+                    <p:inputText type = "text" name = "Nombre" placeholder = "Nombre" value ="#{elementoBean.nombre}" required="true"/>
+                    <br> </br>
+                    <p:inputTextarea name = "Detalle" placeholder = "Escribe aquí la descripción del Elemento." value ="#{elementoBean.descripcion}" required="true"/>                    
+                    <br> </br>
+                    <p:commandButton value="Registrar" actionListener="#{elementoBean.registrarElemento()}"
+                    styleClass="rounded-button ui-button-help" icon="pi pi-check"/>
+                </h:form>
+                <br></br>
+            </div>
+        </body>
+    </h:body>
+</html>

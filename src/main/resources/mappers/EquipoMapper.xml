@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper para la entidad Equipo y lo que se puede hacer con ella -->
+<!-- Autor: Miguel Monroy - Team Developer -->
+  
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.EquipoMapper">
+
+  <insert id="registrarEquipo" parameterType="map">
+      INSERT INTO equipos(idEquipo,nombre,descripcion, disponible, dar_baja)
+          VALUES(#{eq.id}, #{eq.nombre}, #{eq.descripcion}, true, false);
+  </insert>
+
+  <select parameterType="map" id="consultarEquipo" resultMap="EquipoResult">
+    SELECT
+
+      eq.idEquipo AS eq_id,
+      eq.nombre AS eq_nombre,
+      eq.descripcion AS eq_descripcion,
+      eq.disponible AS eq_disponible,
+      eq.dar_baja AS eq_darBaja
+
+    FROM equipos AS eq
+    WHERE #{id} = eq.idEquipo;
+  </select>  
+      
+  <insert id="agregarElementoAEquipo" parameterType="map" >
+    INSERT INTO elementosPorEquipo (idEquipo,idElemento)
+      VALUES(#{equipo.id},#{elemento.id});
+  </insert>
+
+  <select parameterType="map" id="consultarEquipos" resultMap="EquipoResult">
+    SELECT
+
+      eq.idEquipo AS eq_id,
+      eq.nombre AS eq_nombre,
+      eq.descripcion AS eq_descripcion,
+      eq.disponible AS eq_disponible,
+      eq.dar_baja AS eq_darBaja
+
+    FROM equipos AS eq;
+  </select>
+
+
+  <select parameterType="map" id="consultarEquiposDisponibles" resultMap="EquipoResult">
+    SELECT
+
+      eq.idEquipo AS eq_id,
+      eq.nombre AS eq_nombre,
+      eq.descripcion AS eq_descripcion,
+      eq.disponible AS eq_disponible,
+      eq.dar_baja AS eq_darBaja
+
+    FROM equipos AS eq
+    WHERE disponible = true;
+  </select>
+
+  <update id="darDeBajaEquipo" parameterType="map">
+    UPDATE equipos 
+      SET dar_baja = TRUE, disponible = FALSE
+    WHERE idequipo=#{idEqui};
+  </update>
+
+  <resultMap type='Equipo' id='EquipoResult'>
+    <id property="id" column="eq_id" />
+    <result property="nombre" column="eq_nombre" />
+    <result property="descripcion" column="eq_descripcion"/>
+    <result property="disponible" column="eq_disponible"/> 
+    <result property="darBaja" column="eq_darBaja"/>
+  </resultMap>
+
+
+    <update id="asociarElementoConEquipo" parameterType="map">
+        UPDATE elementos
+          SET eqps = #{idEqui}, disponible = 0
+          WHERE idElemento = #{idElem};
+    </update>
+
+</mapper>

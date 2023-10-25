@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" href="equiposEstilo.css">
+    </link>
+</h:head>
+
+<h:body>
+    <header id="main-header">
+        <div class="logo-image">
+            <a href="../index.xhtml">
+                <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                            width:170px;
+                            height:71px;"
+                />
+            </a>
+        </div>
+        <a id="logo-header" href="adminEquipo.xhtml">
+                    <span class="site-name">Volver
+                    </span>
+        </a>
+    </header>
+    <br> </br>
+    <div class="container">
+        <h:form id="darBajaEquipo">
+            <p:panel header="DAR DE BAJA EQUIPOS" style="text-align: center">
+                <p:messages id="msgsDarBaja" closable="true"/>
+                <p:fieldset id="bajarEquipos" legend="Equipos no asociados a un laboratorio">
+                    <p:dataTable var="equipo"
+                                 value="#{equipoBean.getEquiposDisponibles()}"
+                                 rowKey="#{equipo.id}" selection="#{equipoBean.equiposDarBajar}"
+                                 rows="5" paginator="true">
+                        <p:column selectionMode="multiple"
+                                  style="width: 40px; text-align: center" />
+
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{equipo.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Descripcion">
+                            <h:outputText value="#{equipo.descripcion}"/>
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="darBajaBtn"
+                                             value="Dar Baja"
+                                             icon="pi pi-minus-circle"
+                                             styleClass="rounded-button ui-button-danger"
+                                             update="@form"
+                                             actionListener="#{equipoBean.darBajaEquipo()}"
+                                             oncomplete="setTimeout(function(){$('[id$=msgsDarBaja]').hide(1000)},3000);">
+                                <p:confirm header="Confirmación" message="¿Dar de baja estos elementos?" icon="fas fa-exclamation-triangle"/>
+                            </p:commandButton>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <center>
+                                    <p:commandButton value="Sí" type="button" 
+                                    styleClass="ui-confirmdialog-yes rounded-button ui-button-danger" icon="pi pi-check" />
+                                    <p:commandButton value="No" type="button" 
+                                    styleClass="ui-confirmdialog-no ui-button-outlined ui-button-danger" icon="pi pi-times" />
+                                </center>
+                            </p:confirmDialog>
+                        </f:facet>
+
+                    </p:dataTable>
+                </p:fieldset>
+
+            </p:panel>
+        </h:form>
+    </div>
+
+</h:body>
+</html>

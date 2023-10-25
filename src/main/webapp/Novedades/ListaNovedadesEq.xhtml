@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel = "stylesheet" href="../CSS/administrador.css"></link>
+</h:head>
+
+<h:body>
+    <body>
+    <header id="main-header">
+        <div class="logo-image">
+            <a href="../index.xhtml">
+                <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                    width:170px;
+                    height:71px;" 
+                    />
+            </a>
+        </div>
+        <a id="logo-header" href="NovedadEq.xhtml">
+            <span class="site-name">Volver
+            </span>
+        </a>
+    </header>
+
+    <br> </br>
+
+    
+    <div class="a">
+        <br> </br>
+        <h1>Novedades del Equipo #{novedadEqBean.equipo.nombre}</h1>
+        <p:dataTable var="novedad" value="#{novedadEqBean.consultarNovedades()}">
+            <p:column headerText="Identificador">
+                <h:outputText value="#{novedad.id}" />
+            </p:column>
+            <p:column headerText="Fecha">
+                <h:outputText value="#{novedad.fecha}" />
+            </p:column>
+            <p:column headerText="Título">
+                <h:outputText value="#{novedad.titulo}" />
+            </p:column>
+            <p:column headerText="Detalle">
+                <h:outputText value="#{novedad.detalle}" />
+            </p:column>
+            <p:column headerText="Equipo">
+                <h:outputText value="#{novedad.idEquipo}"/>
+            </p:column>
+            <p:column headerText="Elemento">
+                <h:outputText value="#{novedad.idElemento}"/>
+            </p:column>
+        </p:dataTable>
+    </div>
+    </body>
+</h:body>
+</html>

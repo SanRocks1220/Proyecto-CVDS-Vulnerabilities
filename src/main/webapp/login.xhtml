@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel = "stylesheet" href="CSS/login.css"></link>
+</h:head>
+
+<h:body>
+    <body>
+    <h:form id="login_user" prependId="false">
+        <div class="a">
+            <h1>Inicio de sesion</h1>
+
+            <p:outputLabel id="email" placeholder="Email" required="false" type="String" value="#{email}"/>
+            <br> </br>
+            <p:inputText id="clave" placeholder="Clave" required="false" type="String" value="#{clave}"/>
+            <br> </br>
+            <p:commandButton id="boton_login" value="Iniciar sesion" actionListener="#{loginBean.singIn()}">
+                <f:setPropertyActionListener value="#{email}"
+                                             target="#{clave}"/>
+            </p:commandButton>
+        </div>
+
+    </h:form>
+
+
+    </body>
+</h:body>
+
+</html>

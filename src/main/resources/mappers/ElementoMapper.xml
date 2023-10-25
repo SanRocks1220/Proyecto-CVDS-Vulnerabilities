@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper para la entidad Elemento y lo que se puede hacer con ella -->
+<!-- Autor: Cesar Vasquez - Team Developer -->
+
+<mapper namespace="edu.eci.cvds.persistence.mybatis.mappers.ElementoMapper">
+
+    <!-- Consultas e Inserciones de Elementos-->
+    <insert id="registrarElemento" parameterType="map">
+        INSERT INTO elementos(idElemento, nombre, descripcion, disponible, dar_baja, eqps, tipo)
+	      VALUES(#{ele.id},#{ele.nombre},#{ele.descripcion}, #{ele.disponible}, false, null, #{ele.tipoElemento});
+    </insert>
+
+    <select id="consultarElemento" parameterType="map" resultMap="ElementoResult">
+        SELECT
+                idElemento      as ele_id,
+                nombre          as ele_nombre,
+                descripcion     as ele_descripcion,
+                disponible      as ele_disponible,
+                tipo            as ele_tipo
+                <!--ele.ELE_EQU_FK      as ele_eqps-->
+
+                FROM elementos 
+                WHERE idElemento=#{id};
+    </select>
+
+    <select id="consultarElementosDisponibles" resultType="Elemento">
+        SELECT 
+                idElemento      as ele_id,
+                nombre          as ele_nombre,
+                descripcion     as ele_descripcion,
+                disponible      as ele_disponible,
+                tipo            as ele_tipo
+                <!--ele.ELE_EQU_FK      as ele_eqps-->
+                
+                FROM elementos
+                WHERE disponible = true
+    </select>
+
+
+
+    <select id="consultarElementosNoAsociados" parameterType="map" resultMap="ElementoResult">
+            SELECT
+                ele.idElemento      as ele_id,
+                ele.nombre          as ele_nombre,
+                ele.descripcion     as ele_descripcion,
+                ele.disponible      as ele_disponible,
+                ele.tipo            as ele_tipo
+
+                FROM elementos AS ele
+                WHERE ele.eqps IS null and not ele.dar_baja ;
+    </select>
+
+    <select id="consultarRatonesNoAsociados" parameterType="map" resultMap="ElementoResult">
+        SELECT
+            ele.nombre          as ele_nombre,
+            ele.descripcion     as ele_descripcion
+
+
+            FROM elementos AS ele
+            WHERE ele.eqps IS null and not ele.dar_baja AND ele.tipo = "MOUSE";
+    </select>
+
+    <select id="consultarTorresNoAsociados" parameterType="map" resultMap="ElementoResult">
+        SELECT
+
+            ele.nombre          as ele_nombre,
+            ele.descripcion     as ele_descripcion
+
+            FROM elementos AS ele
+            WHERE ele.eqps IS null and not ele.dar_baja and ele.tipo = 'TORRE';
+    </select>
+
+<select id="consultarTecladosNoAsociados" parameterType="map" resultMap="ElementoResult">
+    SELECT
+        ele.idElemento      as ele_id,
+        ele.nombre          as ele_nombre,
+        ele.descripcion     as ele_descripcion,
+        ele.disponible      as ele_disponible,
+        ele.tipo            as ele_tipo
+
+        FROM elementos AS ele
+        WHERE ele.eqps IS null and not ele.dar_baja and ele.tipo = 'TECLADO';
+    </select>
+
+<select id="consultarPantallasNoAsociados" parameterType="map" resultMap="ElementoResult">
+    SELECT
+        ele.idElemento      as ele_id,
+        ele.nombre          as ele_nombre,
+        ele.descripcion     as ele_descripcion,
+        ele.disponible      as ele_disponible,
+        ele.tipo            as ele_tipo
+
+        FROM elementos AS ele
+        WHERE ele.eqps IS null and not ele.dar_baja and ele.tipo = 'PANTALLA';
+    </select>
+    
+
+    <select id="consultarElementos" resultMap="ElementoResult">
+        SELECT
+                ele.idElemento      as ele_id,
+                ele.nombre          as ele_nombre,
+                ele.descripcion  as ele_descripcion,
+                ele.disponible      as ele_disponible,
+                ele.tipo            as ele_tipo
+
+                FROM elementos AS ele;
+    </select>
+
+    <resultMap id="ElementoResult" type="Elemento" >
+        <id     property="id"               column="ele_id" />
+        <result property="nombre"           column="ele_nombre" />
+        <result property="descripcion"      column="ele_descripcion"/>
+        <result property="disponible"       column="ele_disponible"/>
+        <result property="tipoElemento"     column="ele_tipo"/>
+        <result property="equipoAsociado"   column="ele_eqps"/> <!-- Hay que agregar a las tablas-->
+    </resultMap>
+
+    <update id="setDarDeBaja">
+        UPDATE Elementos set 
+        dar_baja = 1, disponible = 0
+        where (eqps is null or (select dar_baja from equipos where idequipo = eqps)) and idElemento = #{idElemento}
+    </update>
+         	
+</mapper>

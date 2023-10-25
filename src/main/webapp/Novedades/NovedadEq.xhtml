@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" href="novedadesEstilo.css">
+        </link>
+    </h:head>
+    <h:body>
+        <body>
+            <header id="main-header">
+                <div class="logo-image">
+                    <a href="../index.xhtml">
+                        <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                            width:170px;
+                            height:71px;" 
+                            />
+                    </a>
+                </div>
+                <a id="logo-header" href="../index.xhtml">
+                    <span class="site-name">Volver
+                    </span>
+                </a>
+            </header>
+            <br> </br>
+
+            <div class="a">
+                <h1>Administrar Novedades en Equipos</h1>
+                <p>Como usuario administrador, podra revisar, registrar o eliminar</p>
+                <p>novedades en los Equipos disponibles</p>
+                <br> </br>
+            </div>
+
+            <div>
+                <h1>Equipos Disponibles</h1>
+                <p:dataTable var="equipo" value="#{equipoBean.getEquipos()}" 
+                lazy="true" 
+                paginator="true" 
+                rows="5"
+                paginatorTemplate="{RowsPerPageDropdown} {PreviousPageLink} {CurrentPageReport} {NextPageLink}"
+                rowsPerPageTemplate="5,10,15">
+                    <p:column headerText="Identificador">
+                        <h:outputText value="#{equipo.id}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{equipo.nombre}" />
+                    </p:column>
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{equipo.descripcion}" />
+                    </p:column>
+                    <p:column headerText="Disponible">
+                        <h:outputText value="#{equipo.disponible}" />
+                    </p:column>
+                    <p:column headerText="Consultar Novedades">
+                        <p:button outcome="ListaNovedadesEq?equipo=#{equipo.id}" value="Ver Novedades" />
+                    </p:column>
+                    <p:column headerText="Registrar Novedades" >
+                        <p:button outcome="RegistroNovedadesEq?equipo=#{equipo.id}" value="Registrar Novedad" />
+                    </p:column>
+                </p:dataTable>
+                <br> </br>
+            </div>
+        </body>
+    </h:body>
+</html>

@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" href="equiposEstilo.css">
+        </link>
+    </h:head>
+    <h:body>
+        <body>
+            <header id="main-header">
+                <div class="logo-image">
+                    <a href="../index.xhtml">
+                        <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                            width:170px;
+                            height:71px;" 
+                            />
+                    </a>
+                </div>
+                <a id="logo-header" href="adminEquipo.xhtml">
+                    <span class="site-name">Volver
+                    </span>
+                </a>
+            </header>
+            <br> </br>
+
+            <div class="a">
+                <br> </br>
+                <h1>Registrar un nuevo equipo</h1>
+                <br> </br>
+            </div>
+
+            <div  id="coments" class="a">
+                
+                <h2>
+                        Registra tu equipo a continuación:
+                </h2>
+                <h:form>
+                    <label>Detalles del equipo:</label>
+                    <p:inputText type = "text" name = "Nombre" placeholder = "Nombre" value ="#{equipoBean.nombre}" required="true"/>                    
+                    <br> </br>
+                    <p:inputTextarea name = "Descripcion" placeholder = "Descripcion" value ="#{equipoBean.descripcion}" required="true"/>
+                    <!-- <br> </br>
+                    <label>Elementos del equipo:</label>
+
+                    <p:selectOneMenu id="ratones" value="#{equipoBean.ele1}" style="width:205px"
+
+                        filter ="true" filterMatchMode="startsWith">
+
+                        <f:selectItem itemLabel="Seleccione un mouse" itemValue=""/>
+                        <f:selectItems value="#{elementoBean.consultarRatonesNoAsociados()}" var="raton"
+                        itemLabel="#{raton.nombre}" itemValue="#{elemento}"/>
+
+                        <f:facet name="footer">
+                        <h:outputText value="#{elementoBean.consultarRatonesNoAsociados().size()} ratones"
+                                    style="font-weight:bold;" styleClass="py-1 block"/>
+                        </f:facet>
+
+                    </p:selectOneMenu>
+
+                    <p:selectOneMenu id="torres" value="#{equipoBean.ele2}" style="width:205px"
+                        filter ="true" filterMatchMode="startsWith">
+
+                        <f:selectItem itemLabel="Seleccione una torre" itemValue=""/>
+                        <f:selectItems value="#{elementoBean.consultarTorresNoAsociados()}" var="torre"
+                        itemLabel="#{torre.nombre}" itemValue="#{elemento}"/>
+
+                        <f:facet name="footer">
+                        <h:outputText value="#{elementoBean.consultarTorresNoAsociados().size()} torres"
+                                    style="font-weight:bold;" styleClass="py-1 block"/>
+                        </f:facet>
+
+                    </p:selectOneMenu>
+                    
+                    <p:selectOneMenu id="teclados" value="#{equipoBean.ele3}" style="width:205px"
+                        filter ="true" filterMatchMode="startsWith">
+
+                        <f:selectItem itemLabel="Seleccione un teclado" itemValue=""/>
+                        <f:selectItems value="#{elementoBean.consultarTecladosNoAsociados()}" var="teclado"
+                        itemLabel="#{teclado.nombre}" itemValue="#{elemento}"/>
+
+                        <f:facet name="footer">
+                        <h:outputText value="#{elementoBean.consultarTecladosNoAsociados().size()} teclados"
+                                    style="font-weight:bold;" styleClass="py-1 block"/>
+                        </f:facet>
+
+                    </p:selectOneMenu>
+        
+        
+                    <p:selectOneMenu id="pantallas" value="#{equipoBean.ele4}" style="width:205px"
+                        filter ="true" filterMatchMode="startsWith">
+
+                        <f:selectItem itemLabel="Seleccione una pantalla" itemValue=""/>
+                        <f:selectItems value="#{elementoBean.consultarPantallasNoAsociados()}" var="pantalla"
+                        itemLabel="#{pantalla.nombre}" itemValue="#{elemento}"/>
+
+                        <f:facet name="footer">
+                        <h:outputText value="#{elementoBean.consultarPantallasNoAsociados().size()} pantallas"
+                                    style="font-weight:bold;" styleClass="py-1 block"/>
+                        </f:facet>
+
+                    </p:selectOneMenu> -->
+
+                    <br> </br>
+                    <p:commandButton value="Registrar" action="#{equipoBean.registrarEquipo()}"
+                    styleClass="rounded-button ui-button-help" />
+                        
+                </h:form>
+            </div>
+        </body>
+    </h:body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <head>
+        <script src="https://kit.fontawesome.com/311a2545f8.js" crossorigin="anonymous"></script>
+        <title>Historial de Equipos</title>
+        <link rel = "stylesheet" href="CSS/index.css"></link>
+    </head>
+      
+    <body>
+        <header id="main-header">
+            <a id="logo-header" href="index.xhtml">
+                <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                width:140px;
+                height:61px;" 
+                />
+                <span class="site-name">ADMINISTRADOR</span>
+            </a>
+        </header>
+
+
+        <div class="container">
+            <div class="card">
+                <div class="content">
+                    <h3>Administrar Elementos</h3>
+                    <a href="faces/Elementos/adminElemento.xhtml">Ingresar</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <h3>Administrar Equipos</h3>
+                    <a href="faces/Equipos/adminEquipo.xhtml">Ingresar</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <h3>Administrar Novedades</h3>
+                    <a href="faces/Novedades/NovedadEq.xhtml">Equipos</a>
+                    <br></br>
+                    <a href="faces/Novedades/NovedadEl.xhtml">Elementos</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <h3>Reporte Histórico de Novedades</h3>
+                    <a href="faces/Novedades/HistorialNovedades.xhtml">Ingresar</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <h3>Administrar Laboratorios</h3>
+                    <a href="faces/Laboratorios/adminLaboratorios.xhtml">Ingresar</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" href="laboratoriosEstilo.css">
+        </link>
+    </h:head>
+    <h:body>
+        <body>
+            <header id="main-header">
+                <div class="logo-image">
+                    <a href="../index.xhtml">
+                        <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                            width:170px;
+                            height:71px;" 
+                            />
+                    </a>
+                </div>
+                <a id="logo-header" href="adminLaboratorios.xhtml">
+                    <span class="site-name">Volver
+                    </span>
+                </a>
+            </header>
+            <br> </br>
+
+            <div class="a">
+                <br> </br>
+                <h1>Registrar un nuevo Laboratorio</h1>
+                <br> </br>
+            </div>
+
+            <div  id="coments" class="a">
+                <h2>
+                        Registra el laboratorio a continuación
+                </h2>
+                <h:form id="frm">
+                    <br> </br>
+                    <p:inputText type = "text" name = "Nombre" placeholder = "Nombre" value="#{laboratorioBean.nombre}" required="true"/>
+                    <br> </br>
+                    <p:inputTextarea name = "Detalle" placeholder = "Escribe aquí la descripción del Laboratorio." value="#{laboratorioBean.descripcion}" required="true"/>
+                    <br> </br>
+                    <p:commandButton value="Registrar" action="#{laboratorioBean.registrarLaboratorio()}" update="frm"
+                    styleClass="rounded-button ui-button-help" icon="pi pi-check"/>
+                </h:form>
+                <br></br>
+            </div>
+        </body>
+    </h:body>
+</html>

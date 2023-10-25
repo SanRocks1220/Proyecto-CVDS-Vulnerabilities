@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" href="laboratoriosEstilo.css">
+    </link>
+</h:head>
+<h:body>
+    <body>
+    <header id="main-header">
+        <div class="logo-image">
+            <a href="../index.xhtml">
+                <img src="../IMG/logoEci.jpg" style="object-fit: scale-down;
+                            width:170px;
+                            height:71px;"
+                />
+            </a>
+        </div>
+        <a id="logo-header" href="adminLaboratorios.xhtml">
+                    <span class="site-name">Volver
+                    </span>
+        </a>
+    </header>
+    <br> </br>
+
+    <div class="a">
+        <h1>Reporte de laboratorios</h1>
+    </div>
+    <div>
+        <h1>Laboratorios</h1>
+        <p:dataTable var="laboratorio" value="#{laboratorioBean.getLaboratorios()}"
+                     filteredValue="#{laboratorioBean.getLaboratorios()}"
+                     lazy="true"
+                     paginator="true"
+                     rows="5"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+                     rowsPerPageTemplate="5,10,15"
+                     rowKey="#{laboratorio.id}">
+            <p:column headerText="Nombre" sortBy="#{laboratorio.nombre}" filterBy="#{laboratorio.nombre}" filterMatchMode="contains">
+                <h:outputText value="#{laboratorio.nombre}" style="vertical-align: middle; margin-left: .5rem"/>
+            </p:column>
+
+            <p:column headerText="Estado" sortBy="#{laboratorio.getDeBaja()}" filterBy="#{laboratorio.getDeBaja()}" filterMatchMode="contains">
+                <h:outputText value="#{laboratorio.getDeBaja()}" style="vertical-align: middle; margin-left: .5rem"/>
+            </p:column>
+
+            <p:column headerText="Descripción" sortBy="#{laboratorio.descripcion}" filterBy="#{laboratorio.descripcion}">
+                <h:outputText value="#{laboratorio.descripcion}" style="vertical-align: middle; margin-left: .5rem"/>
+            </p:column>
+
+            <p:column headerText="Fecha Creación" sortBy="#{laboratorio.fechaCreacion}" filterBy="#{laboratorio.fechaCreacion}">
+                <h:outputText value="#{laboratorio.fechaCreacion}" style="vertical-align: middle; margin-left: .5rem"/>
+            </p:column>
+
+            <p:column headerText="Fecha Cierre" sortBy="#{laboratorio.fechaCierre}" filterBy="#{laboratorio.fechaCierre}">
+                <h:outputText value="#{laboratorio.fechaCierre}" style="vertical-align: middle; margin-left: .5rem"/>
+            </p:column>
+        </p:dataTable>
+        <br> </br>
+    </div>
+    </body>
+</h:body>
+</html>
